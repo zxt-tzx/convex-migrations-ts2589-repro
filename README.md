@@ -25,24 +25,23 @@ This repo contains:
    npm install
    ```
 
-2. Generate Convex types:
-   ```bash
-   npm run dev
-   ```
-   (Let it generate types, then you can stop it with Ctrl+C)
-
-3. Run TypeScript type checking:
+2. Run TypeScript type checking:
    ```bash
    npm run typecheck
    ```
 
+Note: The `convex/_generated/` types are pre-generated and checked into this repo (normally they're gitignored). This allows you to reproduce the issue immediately without setting up a Convex project.
+
 ## Expected Result
 
-TypeScript reports TS2589 errors in:
-- `convex/migrations/20250101_add_flag.ts` at line 13-14
-- `convex/migrations/20250102_backfill_flag.ts` at line 14-15
-- `convex/migrations/20250103_cleanup_flag.ts` at line 14-15
-- `src/usesApi.ts` at lines 3-4
+TypeScript reports TS2589 errors:
+
+```
+convex/migrations/20250101_add_flag.ts(18,3): error TS2589: Type instantiation is excessively deep and possibly infinite.
+src/usesApi.ts(4,32): error TS2589: Type instantiation is excessively deep and possibly infinite.
+```
+
+Additional cascading errors (TS2339) may also appear as a result of the type instantiation failure.
 
 ## Current Workaround
 
