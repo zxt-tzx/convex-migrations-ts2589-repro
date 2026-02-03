@@ -44,9 +44,27 @@ TypeScript reports TS2589 errors in:
 - `convex/migrations/20250103_cleanup_flag.ts` at line 14-15
 - `src/usesApi.ts` at lines 3-4
 
-## Workaround
+## Current Workaround
 
-The only current workaround is to consolidate all migrations into a single file, which defeats the purpose of organizing migrations chronologically.
+The only current workaround is to consolidate all migrations into a single file, which defeats the purpose of organizing migrations chronologically into separate files.
+
+Alternatively, you can suppress the error with `// @ts-ignore` or `// @ts-expect-error`, but this hides the type safety that TypeScript provides.
+
+## Potential Fix
+
+The maintainer suggested implementing a `defineMigration` function that takes `components.migrations` as a parameter, rather than using the shared constant `migrations` variable across multiple files. This functional approach could reduce the recursive type instantiation that causes TS2589.
+
+Example of what this might look like:
+```ts
+// Instead of:
+import { migrations } from "../migrations";
+export const myMigration = migrations.define({ ... });
+
+// Could be:
+import { defineMigration } from "@convex-dev/migrations";
+import { components } from "../_generated/api";
+export const myMigration = defineMigration(components.migrations, { ... });
+```
 
 ## Environment
 
