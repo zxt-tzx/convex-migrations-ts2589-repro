@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "lib": ["ES2021", "dom"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./convex/*"]
+    }
+  },
+  "include": ["src/**/*", "convex/**/*"],
+  "exclude": ["node_modules", "convex/_generated"]
+}

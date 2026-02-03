@@ -1,0 +1,17 @@
+{
+  "name": "convex-migrations-ts2589-repro",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "convex dev",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@convex-dev/migrations": "^0.3.1",
+    "convex": "^1.18.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
