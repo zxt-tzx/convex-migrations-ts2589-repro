@@ -2,6 +2,8 @@
 
 Minimal reproduction for TypeScript error **TS2589: Type instantiation is excessively deep and possibly infinite** when using `@convex-dev/migrations` with multiple migration files.
 
+This reproduction was created for https://github.com/get-convex/migrations/issues/28
+
 ## Issue
 
 When migrations are split across multiple files (as recommended for maintainability), TypeScript produces TS2589 errors when:
