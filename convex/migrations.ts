@@ -7,12 +7,14 @@ import { internalMutation } from "./_generated/server";
 /**
  * Shared migrations instance used across all migration files.
  *
- * This pattern is recommended in the migrations docs but causes TS2589
- * when you have multiple migration files that reference internal.migrations[...].
+ * IMPORTANT: Only export the migrations instance from this file, not any
+ * Convex functions (runners, mutations, etc). Exporting functions here causes
+ * TS2589 across the codebase because _generated/api.d.ts includes
+ * `typeof migrations` (this module) and runner return types create excessive
+ * type depth in the generated `internal` type.
+ *
+ * See: https://github.com/get-convex/migrations/issues/28
  */
 export const migrations = new Migrations<DataModel>(components.migrations, {
   internalMutation,
 });
-
-// General runner for running all migrations via CLI
-export const run = migrations.runner();
